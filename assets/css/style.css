@@ -314,6 +314,9 @@ section {
   position: relative;
   color: #173b6c;
 }
+.icon-large {
+  font-size: 40px;
+}
 
 .section-title h2::after {
   content: "";
