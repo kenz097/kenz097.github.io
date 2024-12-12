@@ -191,6 +191,10 @@ h6 {
 .nav-menu li:hover>a i {
   color: #149ddd;
 }
+.paper-title {
+  color: #149ddd;
+}
+
 
 /* Mobile Navigation */
 .mobile-nav-toggle {

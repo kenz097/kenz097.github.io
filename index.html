@@ -200,14 +200,19 @@
 
     <!-- ======= Publication Section ======= -->
     <section id="publication" class="publication">
-      <div class="container">
-        <div class="section-title">
-          <h2>Publication</h2>
-        <!-- Placeholder for dynamically loaded publications -->
-        <div id="publication-list" class="publication-list"></div>
-        </div>
+    <div class="container">
+      <div class="section-title">
+        <h2>Publication</h2>
+        <p>These documents are made available as a means to ensure timely dissemination of scholarly and technical work on a non-commercial basis. Copyright and all rights therein are maintained by the authors or by other copyright holders, notwithstanding that they have offered their works here electronically. It is understood that all persons copying this information will adhere to the terms and constraints invoked by each copyright holder. These works may not be reposted without the explicit permission of the copyright holder.</p>
       </div>
-    </section><!-- End Publication Section -->
+      <!-- Scrollable publication list -->
+      <div id="publication-list" class="publication-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
+        <!-- Placeholder for dynamically loaded publications -->
+      </div>
+    </div>
+  </section><!-- End Publication Section -->
+
+
 
 
     <!-- ======= Professional Service Section ======= -->
@@ -217,7 +222,7 @@
         <div class="section-title">
           <h2>Professional Service</h2>
           <h3>Teaching Assistant</h3>
-            <ol reversed>
+            <ul reversed>
               <li> <b>Software Engineering, Management and Evolution (MSc, Italian)</b>. University of Salerno (Italy), 2024 <a href="https://docenti.unisa.it/003241/home"> Andrea De Lucia</a></li>
               <li> <b>Didactics of Computer Science (MSc, Italian)</b>. University of Salerno (Italy), 2024 <a href="https://docenti.unisa.it/001775/home"> Filomena Ferrucci</a></li>
               <li> <b>Software Project Management (MSc, Italian)</b>. University of Salerno (Italy), 2023 <a href="https://docenti.unisa.it/001775/home"> Filomena Ferrucci</a></li>
@@ -225,21 +230,21 @@
               <li> <b>Software Engineering for Artificial Intelligence (MSc, English)</b>. University of Salerno (Italy), 2023-2025 <a href="https://docenti.unisa.it/027888/home"> Fabio Palomba</a> </li>
               <li> <b>Fundamentals of Artificial Intelligence (BSc, Italian)</b>. University of Salerno (Italy), 2022-2024 <a href="https://docenti.unisa.it/027888/home"> Fabio Palomba</a></li>
               <li> <b>Software Engineering I (BSc, Italian)</b>. University of Salerno (Italy), 2022-2024 <a href="https://docenti.unisa.it/003241/home"> Andrea De Lucia</a></li>
-            </ol>
+            </ul>
         </div>
         <h3>Reviewer of International Journals </h3>
-        <ol reversed>
+        <ul reversed>
           <li><b>Transaction on Software Engineering and Methodology (TOSEM)</b></li>
           <li><b>Software X</b></li>
           <li><b>Science of Computer Programming (SCICO)</b></li>
-        </ol>
+        </ul>
         <h3>Students Co-Supervised</h3>
         <ol reversed>
-          <li><b> Domenico Antonio Gioia</b> Master's student (now)</li>
           <li><b>Francesco Gatto</b> Bachelor's student (now)</li>
           <li><b>Samuele Russo</b> Bachelor's student (now)</li>
           <li><b>Andrea Mangia</b> Bachelor's student (now)</li>
-          <li><b>Marco Dello Buono </b>  <i> Graduated Master's student (2024) </i> </li>
+          <li><b>Domenico Antonio Gioia</b>Graduated Master's student (2024)</li>
+          <li><b>Marco Dello Buono</b>  <i>Graduated Master's student (2024)</i> </li>
           <li><b>Francesco Alfonso Barlotti</b>  <i>Graduated Bachelor's student (2024)</i>  </li>
           <li><b>Luca Pastore</b> <i>Graduated Bachelor's student (2024)</i>  </li>
           <li><b>Ciro Troiano</b>  <i>Graduated Bachelor's student (2023)</i>  </li>
@@ -247,12 +252,12 @@
           <li><b>Carmine Iemmino</b> <i>Graduated Bachelor's student (2023)</i>  </li>
         </ol>
         <h3>Organizing Committee Member</h3>
-        <ol reversed>
+        <ul reversed>
           <li><b>Local Arrangement Committee Member</b> for <a href="https://conf.researchr.org/committee/ease-2024/ease-2024-organizing-committee">International Conference on Evaluation and Assessment in Software Engineering (EASE)</a>, June 2024, Salerno, Italy.</li>
           <li><b>Sub Reviewer</b> for <a href="https://conf.researchr.org/home/ease-2024">International Conference on Evaluation and Assessment in Software Engineering - Industry (EASE)</a>, June 2024, Salerno, Italy.</li>
           <li><b>Sub Reviewer</b> for <a href="https://wails2024.github.io/">Workshop on Artificial Intelligence with and for Learning Sciences: Past, Present, and Future Horizons (WAILS)</a>, November (2023)</li>
           <li><b>Social Media Chair</b> for <a href="https://sesalabunisa.github.io/ISSSE-2023/">International Summer School on Software Engineering (ISSSE) </a>, July 2023, Salerno, Italy.</li>
-        </ol>
+        </ul>
         <h3>Student Volunteer</h3>
         <ol reversed>
           <li><a href="https://2024.msrconf.org/committee/msr-2024-junior-pc-technical-papers---junior-program-committee">21st International Conference on Mining Software Repositories (MSR)</a>, April 2024, Lisbon, Portugal.</li>
@@ -347,6 +352,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     // Function to load and display publications from a CSV file
     function loadPublications() {
@@ -370,13 +376,17 @@
     function displayPublications(publications) {
       const publicationList = document.getElementById('publication-list');
 
+      // Sort publications by Year in descending order (latest to oldest)
+      publications.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+
       publications.forEach((publication, index) => {
         // Create the main container for the publication entry
         const publicationDiv = document.createElement('div');
         publicationDiv.classList.add('publication-entry');
 
-        // Create the title
+        // Create the title with a specific color
         const title = document.createElement('h5');
+        title.classList.add('paper-title'); // Add CSS class for styling
         title.innerHTML = `${publication['Paper Name']}`;
         publicationDiv.appendChild(title);
 
@@ -385,6 +395,12 @@
         venue.classList.add('Venue');
         venue.innerHTML = `${publication.Venue}`; // Display the journal or conference name
         publicationDiv.appendChild(venue);
+
+        // Add the year of the publication
+        const year = document.createElement('p');
+        year.classList.add('year');
+        year.innerHTML = `<strong>Year:</strong> ${publication.Year}`;
+        publicationDiv.appendChild(year);
 
         // Add the abstract paragraph
         const abstract = document.createElement('p');
@@ -446,8 +462,9 @@
 
     // Call the function to load publications on page load
     document.addEventListener('DOMContentLoaded', loadPublications);
-
   </script>
+
+
 
 
 
