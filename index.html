@@ -206,7 +206,19 @@
         <p>These documents are made available as a means to ensure timely dissemination of scholarly and technical work on a non-commercial basis. Copyright and all rights therein are maintained by the authors or by other copyright holders, notwithstanding that they have offered their works here electronically. It is understood that all persons copying this information will adhere to the terms and constraints invoked by each copyright holder. These works may not be reposted without the explicit permission of the copyright holder.</p>
       </div>
       <!-- Scrollable publication list -->
-      <div id="publication-list" class="publication-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
+      <div class="row aos-init aos-animate" data-aos="fade-up">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="publication-filters" class="filter-buttons">
+            <li data-filter="all" class="filter-active">ALL</li>
+            <li data-filter="journal">JOURNAL</li>
+            <li data-filter="conference">CONFERENCE</li>
+            <li data-filter="workshop">WORKSHOP</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div id="publication-list" class="publication-list" style="max-height: 500px; overflow-y: auto; border: 2px solid #ddd; padding: 10px;">
         <!-- Placeholder for dynamically loaded publications -->
       </div>
     </div>
@@ -354,9 +366,13 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPublications();
+    });
+
     // Function to load and display publications from a CSV file
     function loadPublications() {
-      const csvFilePath = 'Article.csv'; // Update with your CSV file path
+      const csvFilePath = 'Article.csv'; // Percorso del file CSV
 
       fetch(csvFilePath)
               .then(response => response.text())
@@ -366,6 +382,7 @@
                   skipEmptyLines: true,
                   complete: function(results) {
                     displayPublications(results.data);
+                    setupFiltering(); // Chiamiamo il filtro SOLO dopo aver caricato i dati
                   }
                 });
               })
@@ -375,94 +392,133 @@
     // Function to display the publications in the desired format
     function displayPublications(publications) {
       const publicationList = document.getElementById('publication-list');
+      publicationList.innerHTML = ''; // Elimina le pubblicazioni precedenti per evitare duplicati
 
       // Sort publications by Year in descending order (latest to oldest)
       publications.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
 
-      publications.forEach((publication, index) => {
-        // Create the main container for the publication entry
+      publications.forEach((publication) => {
+        // Crea il contenitore per la pubblicazione
         const publicationDiv = document.createElement('div');
         publicationDiv.classList.add('publication-entry');
 
-        // Create the title with a specific color
+        // 🔹 Normalizziamo la colonna 'type' per il filtraggio
+        let typoValue = (publication.type || '').toLowerCase().trim();
+        if (!typoValue) typoValue = 'other'; // Se il valore è vuoto, assegniamo 'other'
+        publicationDiv.setAttribute('data-typo', typoValue);
+
+        // Titolo
         const title = document.createElement('h5');
-        title.classList.add('paper-title'); // Add CSS class for styling
+        title.classList.add('paper-title');
         title.innerHTML = `${publication['Paper Name']}`;
         publicationDiv.appendChild(title);
 
-        // Create the venue (journal/conference) information
+        // Venue
         const venue = document.createElement('div');
         venue.classList.add('Venue');
-        venue.innerHTML = `${publication.Venue}`; // Display the journal or conference name
+        venue.innerHTML = `${publication.Venue}`;
         publicationDiv.appendChild(venue);
 
-        // Add the year of the publication
+        // Anno
         const year = document.createElement('p');
         year.classList.add('year');
         year.innerHTML = `<strong>Year:</strong> ${publication.Year}`;
         publicationDiv.appendChild(year);
 
-        // Add the abstract paragraph
+        // Abstract
         const abstract = document.createElement('p');
         abstract.innerHTML = `${publication.Abstract}`;
         publicationDiv.appendChild(abstract);
 
-        // Add the authors in a separate paragraph
+        // Autori
         const formattedAuthors = formatAuthors(publication.Authors);
         const authors = document.createElement('p');
         authors.classList.add('authors');
         authors.innerHTML = `${formattedAuthors}`;
         publicationDiv.appendChild(authors);
 
-        // Create the download button section
+        // Creazione del contenitore per il download button
         const downloadButton = document.createElement('div');
         downloadButton.classList.add('download-button');
 
-        // Create the PDF button with FontAwesome icon
-        const pdfButton = document.createElement('a');
-        pdfButton.textContent = 'Download PDF   '; // Add space after text for the icon
-        pdfButton.href = publication.Link; // Link to the PDF file
-        pdfButton.target = '_blank';
+        // Bottone PDF
+        if (publication.Link) { // Controllo che il link al PDF esista
+          const pdfButton = document.createElement('a');
+          pdfButton.textContent = 'Download PDF ';
+          pdfButton.href = publication.Link;
+          pdfButton.target = '_blank';
+          pdfButton.classList.add('pdf-download'); // Cambiato da 'download-button' per maggiore chiarezza
 
-        // Create the FontAwesome icon
-        const pdfIcon = document.createElement('i');
-        pdfIcon.classList.add('fa-solid', 'fa-file-lines'); // Add classes for FontAwesome PDF icon
+          // Creazione dell'icona FontAwesome
+          const pdfIcon = document.createElement('i');
+          pdfIcon.classList.add('fa-solid', 'fa-file-pdf'); // Icona PDF corretta
 
-        // Add the icon to the PDF button
-        pdfButton.appendChild(pdfIcon); // Append the icon after the text
+          // Aggiungere l'icona al bottone dopo il testo
+          pdfButton.appendChild(pdfIcon);
 
-        // Append the PDF button to the download button container
-        downloadButton.appendChild(pdfButton);
+          // Appendere il bottone nel contenitore
+          downloadButton.appendChild(pdfButton);
 
-        // Append the download button container to the publication div
-        publicationDiv.appendChild(downloadButton);
+          // Appendere il contenitore alla pubblicazione
+          publicationDiv.appendChild(downloadButton);
+        }
 
-        // Append the publication entry to the main list
+
+        // Aggiunge la pubblicazione alla lista
         publicationList.appendChild(publicationDiv);
       });
     }
 
     // Helper function to format authors' names
     function formatAuthors(authors) {
+      if (!authors) return '';
       const authorsArray = authors.split(', ');
       return authorsArray
               .map((author) => {
-                // Format "Vincenzo De Martino" as "V. De Martino"
                 if (author.trim() === 'Vincenzo De Martino') {
                   return `<strong>V. De Martino</strong>`;
                 } else {
-                  // Format other authors as First Initial. Last Name
                   const parts = author.trim().split(' ');
-                  const formattedName = `${parts[0][0]}. ${parts.slice(1).join(' ')}`;
-                  return formattedName;
+                  return `${parts[0][0]}. ${parts.slice(1).join(' ')}`;
                 }
               })
               .join(', ');
     }
 
-    // Call the function to load publications on page load
-    document.addEventListener('DOMContentLoaded', loadPublications);
+    // 🔹 Funzione per impostare i filtri
+    function setupFiltering() {
+      const filterButtons = document.querySelectorAll('#publication-filters li');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Rimuove la classe 'filter-active' da tutti i pulsanti
+          filterButtons.forEach(btn => btn.classList.remove('filter-active'));
+          this.classList.add('filter-active');
+
+          // Leggiamo il valore di data-filter
+          const filterValue = this.getAttribute('data-filter');
+          filterPublications(filterValue);
+        });
+      });
+    }
+
+    // 🔹 Funzione per mostrare/nascondere le pubblicazioni
+    function filterPublications(type) {
+      const allPublications = document.querySelectorAll('.publication-entry');
+
+      allPublications.forEach(pub => {
+        const pubTypo = pub.getAttribute('data-typo'); // Prende il valore dal CSV (conference, journal, workshop)
+
+        if (type === 'all') {
+          pub.style.display = 'block';
+        } else {
+          pub.style.display = pubTypo === type ? 'block' : 'none';
+        }
+      });
+    }
   </script>
+
+
 
 
 
