@@ -366,6 +366,22 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
+      const header = document.querySelector("#header");
+      const body = document.body;
+
+      if (mobileNavToggle && header) {
+        mobileNavToggle.addEventListener("click", function () {
+          body.classList.toggle("mobile-nav-active"); // Attiva/disattiva la classe per il menu
+          header.classList.toggle("active"); // Aggiunge la classe "active" all'header
+          this.classList.toggle("bi-list"); // Alterna tra icona "bi-list"
+          this.classList.toggle("bi-x"); // e icona "bi-x" per chiudere il menu
+        });
+      }
+    });
+  </script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       loadPublications();
     });
@@ -516,6 +532,7 @@
         }
       });
     }
+
   </script>
 
 
