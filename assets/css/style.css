@@ -1289,6 +1289,13 @@ section {
   color: #007bff;
   font-weight: bold;
 }
+.link-group {
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
 
 

@@ -218,9 +218,8 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="publication-filters" class="filter-buttons">
               <li data-filter="all" class="filter-active">ALL</li>
-              <li data-filter="journal">JOURNAL</li>
-              <li data-filter="conference">CONFERENCE</li>
-              <li data-filter="workshop">WORKSHOP</li>
+              <li data-filter="journal">📘 JOURNAL <span id="journal-count" class="badge bg-primary ms-1"></span></li>
+              <li data-filter="conference">🎤 CONFERENCE <span id="conference-count" class="badge bg-primary ms-1"></span></li>
             </ul>
           </div>
         </div>
@@ -244,6 +243,7 @@
           <h2>Professional Service</h2>
           <h3>Teaching Assistant</h3>
             <ul reversed>
+              <li> <b>Software Engineering Project (PES) (BSC, Spanish)</b>. Universitat Politecnica de Catalunya (Spain), 2025 <a href="https://silverio-martinez.staff.upc.edu/"> Silverio Martínez-Fernández</a></li>
               <li> <b>Software Engineering, Management and Evolution (MSc, Italian)</b>. University of Salerno (Italy), 2024 <a href="https://docenti.unisa.it/003241/home"> Andrea De Lucia</a></li>
               <li> <b>Software Dependability (MSc, English)</b>. University of Salerno (Italy), 2023-2024 <a href="https://docenti.unisa.it/029186/home"> Dario Di Nucci</a> </li>
               <li> <b>Software Engineering for Artificial Intelligence (MSc, English)</b>. University of Salerno (Italy), 2023-2025 <a href="https://docenti.unisa.it/027888/home"> Fabio Palomba</a> </li>
@@ -428,31 +428,29 @@
       const [day, month, year] = dateStr.split('/');
       return new Date(`${year}-${month}-${day}`);
     }
-
-    // Function to display the publications in the desired format
     function displayPublications(publications) {
       const publicationList = document.getElementById('publication-list');
-      publicationList.innerHTML = ''; // Elimina le pubblicazioni precedenti per evitare duplicati
+      publicationList.innerHTML = '';
 
-      // Sort publications by Year in descending order, then by AddedDate
+      let journalCount = 0;
+      let conferenceCount = 0;
+
       publications.sort((a, b) => {
         const yearDiff = parseInt(b.Year) - parseInt(a.Year);
         if (yearDiff !== 0) return yearDiff;
-
-        const dateA = parseEuropeanDate(a.AddedDate);
-        const dateB = parseEuropeanDate(b.AddedDate);
-        return dateB - dateA;
+        return parseEuropeanDate(b.AddedDate) - parseEuropeanDate(a.AddedDate);
       });
 
       publications.forEach((publication) => {
-        // Crea il contenitore per la pubblicazione
         const publicationDiv = document.createElement('div');
         publicationDiv.classList.add('publication-entry');
 
-        // 🔹 Normalizziamo la colonna 'type' per il filtraggio
-        let typoValue = (publication.type || '').toLowerCase().trim();
-        if (!typoValue) typoValue = 'other'; // Se il valore è vuoto, assegniamo 'other'
-        publicationDiv.setAttribute('data-typo', typoValue);
+        let type = (publication.type || '').toLowerCase().trim();
+        if (!type) type = 'other';
+        publicationDiv.setAttribute('data-typo', type);
+
+        if (type === 'journal') journalCount++;
+        if (type === 'conference') conferenceCount++;
 
         // Titolo
         const title = document.createElement('h5');
@@ -481,31 +479,45 @@
         const formattedAuthors = formatAuthors(publication.Authors);
         const authors = document.createElement('p');
         authors.classList.add('authors');
-        authors.innerHTML = `${formattedAuthors}`;
+        authors.innerHTML = formattedAuthors;
         publicationDiv.appendChild(authors);
 
-        // Creazione del contenitore per il download button
-        const downloadButton = document.createElement('div');
-        downloadButton.classList.add('download-button');
-
-        // Bottone PDF
+        // Link + Badge combinati
         if (publication.Link) {
-          const pdfButton = document.createElement('a');
-          pdfButton.textContent = 'Download PDF ';
-          pdfButton.href = publication.Link;
-          pdfButton.target = '_blank';
-          pdfButton.classList.add('pdf-download');
+          const linksDiv = document.createElement('div');
+          linksDiv.classList.add('link-group', 'mt-2');
 
-          const pdfIcon = document.createElement('i');
-          pdfIcon.classList.add('fa-solid', 'fa-file-pdf');
-          pdfButton.appendChild(pdfIcon);
-          downloadButton.appendChild(pdfButton);
-          publicationDiv.appendChild(downloadButton);
+          const badgeText = (type === 'journal' ? '📘 J' : '🎤 C') + publication.Number;
+          const badge = document.createElement('a');
+          badge.href = '#';
+          badge.classList.add('btn', 'btn-outline-primary', 'me-2', 'mb-1', 'disabled');
+          badge.setAttribute('aria-disabled', 'true');
+          badge.style.pointerEvents = 'none';
+          badge.innerHTML = badgeText;
+
+
+          const linkBtn = document.createElement('a');
+          linkBtn.href = publication.Link;
+          linkBtn.target = '_blank';
+          linkBtn.classList.add('btn', 'btn-outline-primary', 'mb-1');
+
+          if (publication.Link.startsWith('http')) {
+            linkBtn.innerHTML = '🌐 External Link';
+          } else {
+            linkBtn.innerHTML = '📂 Download PDF';
+          }
+
+          linksDiv.appendChild(badge);
+          linksDiv.appendChild(linkBtn);
+          publicationDiv.appendChild(linksDiv);
         }
 
-        // Aggiunge la pubblicazione alla lista
         publicationList.appendChild(publicationDiv);
       });
+
+      // Aggiorna conteggio
+      document.getElementById('journal-count').textContent = journalCount;
+      document.getElementById('conference-count').textContent = conferenceCount;
     }
 
     // Helper function to format authors' names
