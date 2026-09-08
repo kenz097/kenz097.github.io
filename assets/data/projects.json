@@ -1,0 +1,65 @@
+[
+  {
+    "title": "GAISSA-Optimizer",
+    "type": "Catalan Project, Technology Transfer",
+    "code": "2025 PROD 00236",
+    "role": "Activity Leader (A1 Tech Mgmt, A2 IP Mgmt, A5 Team Mgmt, A6 Funding Mgmt)",
+    "description": "Leader of Technology Management, Intellectual Property Management, Team Management, and Funding Management activities, contributing to all project streams.",
+    "status": "Ongoing",
+    "funder": "Government of Catalonia (Generalitat de Catalunya)"
+  },
+  {
+    "title": "MLEVOL",
+    "type": "Spanish National Research Project 2025",
+    "code": "PID2024-156019OB-I00",
+    "role": "Researcher",
+    "description": "Spanish national project investigating machine learning evolution, maintenance, and software engineering practices.",
+    "status": "Ongoing",
+    "funder": "Spanish Ministry of Science and Innovation"
+  },
+  {
+    "title": "GAISSA",
+    "type": "Spanish National Research Project 2022",
+    "code": "TED2021-130923B-I00",
+    "role": "Researcher",
+    "description": "Green Artificial Intelligence for Sustainable Software Architectures.",
+    "status": "Completed",
+    "funder": "Spanish Ministry of Science and Innovation (NextGenerationEU)"
+  },
+  {
+    "title": "FRINGE",
+    "type": "Italian National Research Project (PRIN 2022)",
+    "code": "P2022553SL",
+    "role": "Researcher",
+    "description": "Italian National research project funded by the MUR under the PRIN 2022 program.",
+    "status": "Ongoing",
+    "funder": "Italian Ministry of University and Research (MUR)"
+  },
+  {
+    "title": "Qual-AI",
+    "type": "Italian National Research Project (PRIN 2022)",
+    "code": "D53D23008570006",
+    "role": "Researcher",
+    "description": "Continuous Quality Improvement of AI-based Systems, developing recommenders to monitor, assess, and improve AI/ML quality.",
+    "status": "Completed",
+    "funder": "Italian Ministry of University and Research (MUR)"
+  },
+  {
+    "title": "EMELIOT",
+    "type": "Italian National Research Project (PRIN 2020)",
+    "code": "2020W3A5FY",
+    "role": "Researcher",
+    "description": "Engineered Machine Learning-Intensive IoT Systems.",
+    "status": "Completed",
+    "funder": "Italian Ministry of University and Research (MUR)"
+  },
+  {
+    "title": "Ambizione",
+    "type": "Swiss National Science Foundation Project",
+    "code": "PZ00P2_186090",
+    "role": "Researcher",
+    "description": "Swiss National Science Foundation project supporting high-level empirical research.",
+    "status": "Completed",
+    "funder": "Swiss National Science Foundation (SNF)"
+  }
+]

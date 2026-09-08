@@ -1,0 +1,150 @@
+{
+  "current": [
+    {
+      "name": "Nashly Erielis Gonzalez Gonzalez",
+      "level": "MSc",
+      "status": "Ongoing",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Jia Chen",
+      "level": "BSc",
+      "status": "Ongoing",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Levon Asatryan Hambardzumyan",
+      "level": "BSc",
+      "status": "Ongoing",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    }
+  ],
+  "graduated": [
+    {
+      "name": "Wiktoria Pejs",
+      "level": "MSc",
+      "status": "Graduated",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Xiang Feng Ye Pan",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Omid Ghasemian Mousavi",
+      "level": "MSc",
+      "status": "Graduated",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Victor Llorens Ramos",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2026",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Francesco Gatto",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2025",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Pol Plana Torrents",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2025",
+      "institution": "Universitat Politècnica de Catalunya",
+      "location": "Barcelona, Spain"
+    },
+    {
+      "name": "Samuele Russo",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2025",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Andrea Mangia",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2024",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Domenico Antonio Gioia",
+      "level": "MSc",
+      "status": "Graduated",
+      "year": "2024",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Marco Dello Buono",
+      "level": "MSc",
+      "status": "Graduated",
+      "year": "2024",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Francesco Alfonso Barlotti",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2024",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Luca Pastore",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2024",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Ciro Troiano",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2023",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Marta Napolillo",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2023",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    },
+    {
+      "name": "Carmine Iemmino",
+      "level": "BSc",
+      "status": "Graduated",
+      "year": "2023",
+      "institution": "University of Salerno",
+      "location": "Salerno, Italy"
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "co_lecture": [
+    {
+      "course": "Software Engineering Project (PES)",
+      "level": "BSc",
+      "language": "Spanish",
+      "institution": "Universitat Politècnica de Catalunya",
+      "country": "Spain",
+      "period": "2026-2027"
+    },
+    {
+      "course": "Software Engineering Project (PES)",
+      "level": "BSc",
+      "language": "Spanish",
+      "institution": "Universitat Politècnica de Catalunya",
+      "country": "Spain",
+      "period": "2025-2026"
+    },
+    {
+      "course": "Machine Learning in Production (MLOps)",
+      "level": "MSc",
+      "language": "Spanish",
+      "institution": "Universitat Politècnica de Catalunya",
+      "country": "Spain",
+      "period": "2025-2026"
+    },
+    {
+      "course": "Advanced Topics in Data Engineering 2 (TAED2)",
+      "level": "BSc",
+      "language": "English",
+      "institution": "Universitat Politècnica de Catalunya",
+      "country": "Spain",
+      "period": "2025-2026"
+    },
+    {
+      "course": "Máster de formación permanente en Big Data, Data Science & Engineering",
+      "level": "Master",
+      "language": "Spanish",
+      "institution": "Universitat Politècnica de Catalunya",
+      "country": "Spain",
+      "period": "2024-2025"
+    }
+  ],
+  "teaching_assistant": [
+    {
+      "course": "Software Engineering Project (PES)",
+      "level": "BSc",
+      "language": "Spanish",
+      "institution": "Universitat Politècnica de Catalunya",
+      "country": "Spain",
+      "period": "2025",
+      "instructor": "Silverio Martínez-Fernández",
+      "instructor_link": "https://silverio-martinez.staff.upc.edu/"
+    },
+    {
+      "course": "Software Engineering, Management and Evolution",
+      "level": "MSc",
+      "language": "Italian",
+      "institution": "University of Salerno",
+      "country": "Italy",
+      "period": "2024",
+      "instructor": "Andrea De Lucia",
+      "instructor_link": "https://docenti.unisa.it/003241/home"
+    },
+    {
+      "course": "Software Dependability",
+      "level": "MSc",
+      "language": "English",
+      "institution": "University of Salerno",
+      "country": "Italy",
+      "period": "2023-2024",
+      "instructor": "Dario Di Nucci",
+      "instructor_link": "https://docenti.unisa.it/029186/home"
+    },
+    {
+      "course": "Software Engineering for Artificial Intelligence",
+      "level": "MSc",
+      "language": "English",
+      "institution": "University of Salerno",
+      "country": "Italy",
+      "period": "2023-2025",
+      "instructor": "Fabio Palomba",
+      "instructor_link": "https://docenti.unisa.it/027888/home"
+    },
+    {
+      "course": "Fundamentals of Artificial Intelligence",
+      "level": "BSc",
+      "language": "Italian",
+      "institution": "University of Salerno",
+      "country": "Italy",
+      "period": "2022-2024",
+      "instructor": "Fabio Palomba",
+      "instructor_link": "https://docenti.unisa.it/027888/home"
+    },
+    {
+      "course": "Software Engineering I",
+      "level": "BSc",
+      "language": "Italian",
+      "institution": "University of Salerno",
+      "country": "Italy",
+      "period": "2022-2024",
+      "instructor": "Andrea De Lucia",
+      "instructor_link": "https://docenti.unisa.it/003241/home"
+    }
+  ],
+  "reviewers": [
+    {
+      "journal": "Transactions on Software Engineering and Methodology (TOSEM)",
+      "publisher": "ACM",
+      "badge": "5"
+    },
+    {
+      "journal": "Journal of Systems and Software (JSS)",
+      "publisher": "Elsevier",
+      "badge": "5"
+    },
+    {
+      "journal": "Empirical Software Engineering (EMSE)",
+      "publisher": "Springer",
+      "badge": "1"
+    },
+    {
+      "journal": "Journal of Software: Evolution and Process (JSEP)",
+      "publisher": "Wiley",
+      "badge": "1"
+    },
+    {
+      "journal": "SoftwareX",
+      "publisher": "Elsevier",
+      "badge": "5"
+    },
+    {
+      "journal": "Science of Computer Programming (SCICO)",
+      "publisher": "Elsevier",
+      "badge": "3"
+    },
+    {
+      "journal": "IEEE Software",
+      "publisher": "IEEE",
+      "badge": "5"
+    },
+    {
+      "journal": "Software Quality Journal",
+      "publisher": "Springer",
+      "badge": "2"
+    },
+    {
+      "journal": "Requirement Engineering",
+      "publisher": "Springer",
+      "badge": "1"
+    },
+    {
+      "journal": "Artificial Intelligence Review",
+      "publisher": "Springer",
+      "badge": "1"
+    }
+  ],
+  "organizing_committee": [
+    {
+      "role": "Program Committee",
+      "event": "The 34th IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER 2027)",
+      "venue_short": "SANER 2027",
+      "date": "March 2027",
+      "year": 2027,
+      "location": "Richmond, Virginia, USA",
+      "link": "https://conf.researchr.org/committee/saner-2027/saner-2027-papers-program-committee"
+    },
+    {
+      "role": "Program Committee",
+      "event": "4th Workshop on Software Quality Assurance for Artificial Intelligence (SQA4AI)",
+      "venue_short": "SQA4AI @ SANER 2027",
+      "date": "March 2027",
+      "year": 2027,
+      "location": "Richmond, Virginia, USA",
+      "link": "https://sqa4ai-ws.github.io/2027/index.html"
+    },
+    {
+      "role": "Program Committee",
+      "event": "Neurosymbolic Artificial Intelligence for Healthcare: First International Symposium (NeSy4H 2026)",
+      "venue_short": "NeSy4H @ ICMSE",
+      "date": "September 2026",
+      "year": 2026,
+      "location": "Naples, Italy",
+      "link": " https://sites.google.com/unipegaso.it/nesy4h2026/committees"
+    },
+    {
+      "role": "Co-Chair",
+      "event": "1st International Workshop on Empirical Prompt Engineering for Software Engineering (Prompt-SE 2026)",
+      "venue_short": "Prompt-SE @ EASE 2026",
+      "date": "June 2026",
+      "year": 2026,
+      "location": "Glasgow, United Kingdom",
+      "link": "https://conf.researchr.org/home/ease-2026/prompt-se-2026"
+    },
+    {
+      "role": "Junior PC",
+      "event": "21st International Conference on Mining Software Repositories (MSR 2026)",
+      "venue_short": "MSR 2026",
+      "date": "April 2026",
+      "year": 2026,
+      "location": "Rio De Janeiro, Brazil",
+      "link": "https://2026.msrconf.org/committee/msr-2026-junior-pc-technical-papers---junior-program-committee"
+    },
+    {
+      "role": "Program Committee",
+      "event": "5th International Conference on AI Engineering – Software Engineering for AI (CAIN 2026) - Posters Track",
+      "venue_short": "CAIN 2026 Posters",
+      "date": "April 2026",
+      "year": 2026,
+      "location": "Rio De Janeiro, Brazil",
+      "link": "https://conf.researchr.org/committee/cain-2026/cain-2026-call-for-posters-program-committee"
+    },
+    {
+      "role": "Program Committee",
+      "event": "3rd Workshop on Software Quality Assurance for AI (SQA4AI 2026)",
+      "venue_short": "SQA4AI 2026",
+      "date": "March 2026",
+      "year": 2026,
+      "location": "Limassol, Cyprus",
+      "link": "https://sqa4ai-ws.github.io/"
+    },
+    {
+      "role": "Sub Reviewer",
+      "event": "International Symposium on Empirical Software Engineering and Measurement (ESEM 2025) - Main Track",
+      "venue_short": "ESEM 2025",
+      "date": "September 2025",
+      "year": 2025,
+      "location": "Honolulu, USA",
+      "link": "https://conf.researchr.org/home/esem-2025"
+    },
+    {
+      "role": "Sub Reviewer",
+      "event": "International Conference on Evaluation and Assessment in Software Engineering (EASE 2025) - Main Track",
+      "venue_short": "EASE 2025",
+      "date": "June 2025",
+      "year": 2025,
+      "location": "Istanbul, Turkey",
+      "link": "https://conf.researchr.org/home/ease-2025"
+    },
+    {
+      "role": "Junior PC",
+      "event": "21st International Conference on Mining Software Repositories (MSR 2024)",
+      "venue_short": "MSR 2024",
+      "date": "April 2024",
+      "year": 2024,
+      "location": "Lisbon, Portugal",
+      "link": "https://2024.msrconf.org/committee/msr-2024-junior-pc-technical-papers---junior-program-committee"
+    },
+    {
+      "role": "Local Arrangement Committee",
+      "event": "International Conference on Evaluation and Assessment in Software Engineering (EASE 2024)",
+      "venue_short": "EASE 2024",
+      "date": "June 2024",
+      "year": 2024,
+      "location": "Salerno, Italy",
+      "link": "https://conf.researchr.org/committee/ease-2024/ease-2024-organizing-committee"
+    },
+    {
+      "role": "Sub Reviewer",
+      "event": "International Conference on Evaluation and Assessment in Software Engineering (EASE 2024) - Industry Track",
+      "venue_short": "EASE 2024 Industry",
+      "date": "June 2024",
+      "year": 2024,
+      "location": "Salerno, Italy",
+      "link": "https://conf.researchr.org/home/ease-2024"
+    },
+    {
+      "role": "Sub Reviewer",
+      "event": "Workshop on Artificial Intelligence with and for Learning Sciences: Past, Present, and Future Horizons (WAILS)",
+      "venue_short": "WAILS 2023",
+      "date": "November 2023",
+      "year": 2023,
+      "location": "Online",
+      "link": "https://wails2024.github.io/"
+    },
+    {
+      "role": "Social Media Chair",
+      "event": "International Summer School on Software Engineering (ISSSE 2023)",
+      "venue_short": "ISSSE 2023",
+      "date": "July 2023",
+      "year": 2023,
+      "location": "Salerno, Italy",
+      "link": "https://sesalabunisa.github.io/ISSSE-2023/"
+    }
+  ],
+  "volunteers": [
+    {
+      "event": "31st International Working Conference on Requirement Engineering: Foundation for Software Quality (REFSQ)",
+      "year": 2025,
+      "location": "Barcelona, Spain"
+    },
+    {
+      "event": "17th Edition of the International Summer School on Software Engineering (ISSSE)",
+      "year": 2024,
+      "location": "Salerno, Italy"
+    },
+    {
+      "event": "28th Edition of the International Conference on Evaluation and Assessment in Software Engineering (EASE)",
+      "year": 2024,
+      "location": "Salerno, Italy"
+    },
+    {
+      "event": "15th Seminar on Advanced Techniques & Tools for Software Evolution (SATToSE)",
+      "year": 2023,
+      "location": "Salerno, Italy"
+    },
+    {
+      "event": "1st Edition of the Engineered Machine Learning-Intensive IoT Systems (EMELIOT) workshop",
+      "year": 2023,
+      "location": "Salerno, Italy"
+    },
+    {
+      "event": "16th International Summer School on Software Engineering (ISSSE)",
+      "year": 2023,
+      "location": "Salerno, Italy"
+    }
+  ]
+}
