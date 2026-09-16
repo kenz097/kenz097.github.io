@@ -459,7 +459,60 @@
         .join('');
     }
 
-    // 3. Reviewers (International Journals)
+    // 3. Editorial Roles & Guest Editorships (Top of Journals)
+    const editorialContainer = document.getElementById('service-editorial-list');
+    if (editorialContainer) {
+      if (data.editorial_roles && data.editorial_roles.length > 0) {
+        editorialContainer.innerHTML = data.editorial_roles
+          .map((item) => {
+            const publisherClass = (item.publisher || '').toLowerCase();
+            return `
+            <div class="editorial-role-card">
+              <div class="editorial-card-header">
+                <div class="editorial-badges-wrap">
+                  <span class="badge-editorial-role"><span class="pulse-dot"></span> ${escapeHtml(item.role)}</span>
+                  <span class="badge-publisher pub-${publisherClass}">${escapeHtml(item.publisher || 'Journal')}</span>
+                  ${item.badge ? `<span class="badge-tier">${escapeHtml(item.badge)}</span>` : ''}
+                </div>
+                ${item.period ? `<span class="editorial-period"><i class="bi bi-calendar3"></i> ${escapeHtml(item.period)}</span>` : ''}
+              </div>
+
+              <div class="editorial-journal-title">
+                <i class="bi bi-journal-richtext"></i>
+                <span>${escapeHtml(item.journal)}</span>
+              </div>
+
+              ${
+                item.special_issue
+                  ? `<div class="editorial-si-title"><strong>Special Issue:</strong> "${escapeHtml(item.special_issue)}"</div>`
+                  : ''
+              }
+
+              ${item.description ? `<p class="editorial-description">${escapeHtml(item.description)}</p>` : ''}
+
+              ${
+                item.link
+                  ? `
+                <div class="editorial-actions">
+                  <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="editorial-link-btn">
+                    <i class="bi bi-box-arrow-up-right"></i> <span>View Journal / Special Issue</span>
+                  </a>
+                </div>
+              `
+                  : ''
+              }
+            </div>
+          `;
+          })
+          .join('');
+        editorialContainer.style.display = 'grid';
+      } else {
+        editorialContainer.innerHTML = '';
+        editorialContainer.style.display = 'none';
+      }
+    }
+
+    // 4. Reviewers (International Journals)
     const reviewerContainer = document.getElementById('service-reviewer-list');
     if (reviewerContainer && data.reviewers) {
       reviewerContainer.innerHTML = data.reviewers

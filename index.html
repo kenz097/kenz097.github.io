@@ -239,7 +239,7 @@
           </div>
 
           <div class="fact-card">
-            <div class="fact-icon"><i class="bi bi-globe-americas"></i></div>
+            <div class="fact-icon"><i class="bi bi-globe2"></i></div>
             <div class="fact-content">
               <span class="fact-label">Nationality</span>
               <span class="fact-value">Italian</span>
@@ -551,7 +551,10 @@
         </div>
 
         <!-- Reviewer of International Journals -->
-        <h3 class="service-subheading"><i class="bi bi-journal-check"></i> Reviewer for International Journals</h3>
+        <h3 class="service-subheading"><i class="bi bi-journal-check"></i> Editorial Roles &amp; Reviewer for International Journals</h3>
+        <div id="service-editorial-list" class="editorial-grid">
+          <!-- Dynamically loaded from services.json -->
+        </div>
         <div id="service-reviewer-list" class="reviewers-grid">
           <!-- Dynamically loaded from services.json -->
         </div>
@@ -626,22 +629,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
-      const header = document.querySelector("#header");
-      const body = document.body;
-
-      if (mobileNavToggle && header) {
-        mobileNavToggle.addEventListener("click", function () {
-          body.classList.toggle("mobile-nav-active"); // Attiva/disattiva la classe per il menu
-          header.classList.toggle("active"); // Aggiunge la classe "active" all'header
-          this.classList.toggle("bi-list"); // Alterna tra icona "bi-list"
-          this.classList.toggle("bi-x"); // e icona "bi-x" per chiudere il menu
-        });
-      }
-    });
-  </script>
   <!-- Academic Data & Interactive Loader -->
   <script src="assets/js/academic-loader.js"></script>
 

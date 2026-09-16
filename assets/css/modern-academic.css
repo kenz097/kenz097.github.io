@@ -887,6 +887,124 @@ code, pre, .project-code-chip {
   margin: 0;
 }
 
+/* Editorial Roles & Guest Editorships (Top of Journals) */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.editorial-role-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border: 1.5px solid rgba(2, 132, 199, 0.25);
+  border-left: 4.5px solid var(--primary-accent);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+  transition: var(--transition);
+  position: relative;
+}
+
+.editorial-role-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.16);
+  border-color: rgba(2, 132, 199, 0.45);
+}
+
+.editorial-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.editorial-badges-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge-editorial-role {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.editorial-period {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.editorial-journal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.editorial-journal-title i {
+  color: var(--primary-accent);
+  font-size: 18px;
+}
+
+.editorial-si-title {
+  font-size: 14px;
+  color: #1e293b;
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.editorial-si-title strong {
+  color: #0369a1;
+}
+
+.editorial-description {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.editorial-actions {
+  margin-top: 10px;
+}
+
+.editorial-link-btn {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--primary-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.editorial-link-btn:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
 /* Journal Reviewer Cards */
 .reviewers-grid {
   display: grid;
@@ -1816,3 +1934,74 @@ code, pre, .project-code-chip {
   align-items: center !important;
   gap: 10px !important;
 }
+
+/* --------------------------------------------------------------------------
+   11. COMPREHENSIVE RESPONSIVE MOBILE POLISH
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  body.mobile-nav-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 9996;
+    transition: var(--transition);
+  }
+}
+
+@media (max-width: 768px) {
+  .pub-filters-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #publication-filters {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  #publication-filters li {
+    padding: 6px 12px !important;
+    font-size: 12.5px !important;
+  }
+
+  .connect-modern-box {
+    padding: 24px 18px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-stats-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .facts-modern-grid,
+  .research-pillars-grid,
+  .hobbies-modern-grid,
+  .students-grid,
+  .committee-grid,
+  .service-items-grid,
+  .reviewers-grid,
+  .projects-grid,
+  .editorial-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-narrative-card {
+    padding: 22px 18px !important;
+  }
+
+  .timeline-modern-card {
+    padding: 16px 16px !important;
+  }
+
+  .about-languages-pill {
+    font-size: 12.5px;
+    padding: 8px 12px;
+  }
+}
+

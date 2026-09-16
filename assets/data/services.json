@@ -103,6 +103,19 @@
       "instructor_link": "https://docenti.unisa.it/003241/home"
     }
   ],
+  "editorial_roles": [
+    {
+      "role": "Lead Guest Editor",
+      "journal": "Empirical Software Engineering (EMSE)",
+      "publisher": "Springer",
+      "special_issue": "Empirical Studies for Prompt Engineering in Software Engineering (PROMPT-SE 2026)",
+      "period": "2026",
+      "badge": "Special Issue",
+      "status": "Active",
+      "description": "Leading the special issue dedicated to empirical methodologies, benchmarking, and real-world prompt engineering applications in software engineering.",
+      "link": "https://link.springer.com/journal/10664"
+    }
+  ],
   "reviewers": [
     {
       "journal": "Transactions on Software Engineering and Methodology (TOSEM)",
