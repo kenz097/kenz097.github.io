@@ -152,15 +152,21 @@
   function updateCounts() {
     const journalCount = allPublications.filter((p) => p.type === 'journal').length;
     const conferenceCount = allPublications.filter((p) => p.type === 'conference').length;
+    const magazineCount = allPublications.filter((p) => p.type === 'magazine').length;
     const totalCount = allPublications.length;
 
     const jEl = document.getElementById('journal-count');
     const cEl = document.getElementById('conference-count');
+    const mEl = document.getElementById('magazine-count');
     const tEl = document.getElementById('total-pub-count');
 
     if (jEl) jEl.textContent = journalCount;
     if (cEl) cEl.textContent = conferenceCount;
+    if (mEl) mEl.textContent = magazineCount;
     if (tEl) tEl.textContent = totalCount;
+
+    const statPubEl = document.getElementById('stat-pub-count');
+    if (statPubEl) statPubEl.textContent = totalCount;
   }
 
   function renderPublications() {
@@ -201,9 +207,20 @@
       card.setAttribute('data-type', pub.type);
 
       const isJournal = pub.type === 'journal';
-      const typeBadgeClass = isJournal ? 'badge-journal' : 'badge-conference';
-      const typeLabel = isJournal ? '📘 Journal' : '🎤 Conference';
-      const numberBadge = (isJournal ? 'J' : 'C') + (pub.number || '');
+      const isMagazine = pub.type === 'magazine';
+      let typeBadgeClass = 'badge-conference';
+      let typeLabel = '🎤 Conference';
+      let numPrefix = 'C';
+      if (isJournal) {
+        typeBadgeClass = 'badge-journal';
+        typeLabel = '📘 Journal';
+        numPrefix = 'J';
+      } else if (isMagazine) {
+        typeBadgeClass = 'badge-magazine';
+        typeLabel = '📰 Magazine & Notes';
+        numPrefix = 'M';
+      }
+      const numberBadge = numPrefix + (pub.number || '');
 
       // Format authors: highlight Vincenzo De Martino
       const formattedAuthors = formatAuthors(pub.authors);
@@ -292,7 +309,7 @@
     const firstWord = (pub.title || '').replace(/[^a-zA-Z0-9]/g, '').slice(0, 10) || 'paper';
     const citeKey = `${firstAuthor.toLowerCase()}${pub.Year || ''}${firstWord.toLowerCase()}`;
 
-    if (pub.type === 'journal') {
+    if (pub.type === 'journal' || pub.type === 'magazine') {
       return `@article{${citeKey},
   author    = {${pub.authors}},
   title     = {${pub.title}},
@@ -596,6 +613,9 @@
   }
 
   function renderProjects(projects) {
+    const projCountEl = document.getElementById('stat-projects-count');
+    if (projCountEl && projects) projCountEl.textContent = projects.length;
+
     const container = document.getElementById('research-projects-list');
     if (!container) return;
 

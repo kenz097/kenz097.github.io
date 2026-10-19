@@ -6,9 +6,28 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Vincenzo De Martino</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Vincenzo De Martino, Ph.D. — PostDoc Researcher &amp; Computer Scientist</title>
+  <meta content="Academic portfolio of Vincenzo De Martino, Ph.D., Postdoctoral Researcher at Universitat Politècnica de Catalunya (UPC-BarcelonaTech). Research in Empirical Software Engineering, SE4AI, and Sustainable AI." name="description">
+  <meta content="Vincenzo De Martino, Software Engineering, SE4AI, AI4SE, Green AI, Empirical Software Engineering, UPC, Universitat Politecnica de Catalunya, Prompt Engineering, LLM" name="keywords">
+  <meta name="author" content="Vincenzo De Martino">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/photo_1.png">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kenz097.github.io/">
+  <meta property="og:title" content="Vincenzo De Martino, Ph.D. — PostDoc Researcher &amp; Computer Scientist">
+  <meta property="og:description" content="Academic portfolio of Vincenzo De Martino, Ph.D. Research in Empirical Software Engineering, SE4AI, and Sustainable AI.">
+  <meta property="og:image" content="assets/img/photo_1.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@vincenzo97dm">
+  <meta name="twitter:creator" content="@vincenzo97dm">
+  <meta name="twitter:title" content="Vincenzo De Martino, Ph.D. — PostDoc Researcher &amp; Computer Scientist">
+  <meta name="twitter:description" content="Postdoctoral Researcher at UPC-BarcelonaTech specializing in Empirical Software Engineering, SE4AI, and Green AI.">
+  <meta name="twitter:image" content="assets/img/photo_1.png">
 
 
   <!-- Google Fonts (Inter, Plus Jakarta Sans, JetBrains Mono) -->
@@ -130,28 +149,28 @@
         <div class="hero-stats-bento">
           <a href="#publication" class="bento-card">
             <div class="bento-icon"><i class="bi bi-journal-text"></i></div>
-            <span class="bento-num">15+</span>
+            <span class="bento-num" id="stat-pub-count">17</span>
             <span class="bento-title">Publications</span>
             <span class="bento-desc">ICSE, TOSEM, JSS, EMSE, EASE</span>
           </a>
 
           <a href="#service" class="bento-card">
             <div class="bento-icon"><i class="bi bi-people-fill"></i></div>
-            <span class="bento-num">11+</span>
+            <span class="bento-num" id="stat-students-count">19</span>
             <span class="bento-title">Students Mentored</span>
             <span class="bento-desc">Master's &amp; Bachelor's at UPC &amp; UniSa</span>
           </a>
 
           <a href="#research-projects" class="bento-card">
             <div class="bento-icon"><i class="bi bi-folder-check"></i></div>
-            <span class="bento-num">7</span>
+            <span class="bento-num" id="stat-projects-count">8</span>
             <span class="bento-title">Research Projects</span>
             <span class="bento-desc">Funded across Spain, Italy &amp; Switzerland</span>
           </a>
 
           <a href="#service" class="bento-card">
             <div class="bento-icon"><i class="bi bi-award-fill"></i></div>
-            <span class="bento-num">8+</span>
+            <span class="bento-num" id="stat-journals-count">8+</span>
             <span class="bento-title">International Journals</span>
             <span class="bento-desc">Reviewer for ACM, IEEE, Elsevier, Springer</span>
           </a>
@@ -501,6 +520,7 @@
               <li data-filter="all" class="filter-active">ALL</li>
               <li data-filter="journal">📘 JOURNAL <span id="journal-count" class="badge"></span></li>
               <li data-filter="conference">🎤 CONFERENCE <span id="conference-count" class="badge"></span></li>
+              <li data-filter="magazine">📰 MAGAZINE &amp; NOTES <span id="magazine-count" class="badge"></span></li>
             </ul>
 
             <div id="publication-year-filters" class="pub-year-filters">

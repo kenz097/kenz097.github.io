@@ -531,6 +531,11 @@ code, pre, .project-code-chip {
   color: #6d28d9;
 }
 
+.pub-type-badge.badge-magazine {
+  background: #fef3c7;
+  color: #b45309;
+}
+
 .pub-badge-num {
   background: rgba(0, 0, 0, 0.08);
   padding: 1px 5px;

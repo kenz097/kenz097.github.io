@@ -171,6 +171,24 @@
   "organizing_committee": [
     {
       "role": "Program Committee",
+      "event": "6th International Conference on AI Engineering – Software Engineering for AI (CAIN 2027) - Research Track",
+      "venue_short": "CAIN 2027",
+      "date": "April 2027",
+      "year": 2027,
+      "location": "Dublin, Ireland",
+      "link": "https://conf.researchr.org/committee/cain-2027/cain-2027-call-for-papers-program-committee"
+    },
+    {
+      "role": "Program Committee",
+      "event": "6th International Conference on AI Engineering – Software Engineering for AI (CAIN 2027) - Posters and Demos Track",
+      "venue_short": "CAIN 2027 Posters & Demos",
+      "date": "April 2027",
+      "year": 2027,
+      "location": "Dublin, Ireland",
+      "link": "https://conf.researchr.org/committee/cain-2027/cain-2027-call-for-posters-program-committee"
+    },
+    {
+      "role": "Program Committee",
       "event": "The 34th IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER 2027)",
       "venue_short": "SANER 2027",
       "date": "March 2027",
@@ -190,11 +208,11 @@
     {
       "role": "Program Committee",
       "event": "Neurosymbolic Artificial Intelligence for Healthcare: First International Symposium (NeSy4H 2026)",
-      "venue_short": "NeSy4H @ ICMSE",
+      "venue_short": "NeSy4H",
       "date": "September 2026",
       "year": 2026,
       "location": "Naples, Italy",
-      "link": " https://sites.google.com/unipegaso.it/nesy4h2026/committees"
+      "link": "https://sites.google.com/unipegaso.it/nesy4h2026/committees"
     },
     {
       "role": "Co-Chair",

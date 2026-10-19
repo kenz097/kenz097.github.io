@@ -1,0 +1,36 @@
+{
+  "hotspots": [
+    {
+      "label": "re",
+      "risk": 0.401,
+      "type": "FUNCTION"
+    },
+    {
+      "label": "Tooltip",
+      "risk": 0.235,
+      "type": "CLASS"
+    },
+    {
+      "label": "Tooltip",
+      "risk": 0.235,
+      "type": "CLASS"
+    },
+    {
+      "label": "Tooltip",
+      "risk": 0.235,
+      "type": "CLASS"
+    },
+    {
+      "label": "bootstrap.bundle.js",
+      "risk": 0.201,
+      "type": "FUNCTION"
+    }
+  ],
+  "blast_radius": {
+    "contains()": 140,
+    "on": 87,
+    "each()": 86,
+    "off()": 71,
+    "closest()": 60
+  }
+}

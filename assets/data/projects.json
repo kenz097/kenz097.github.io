@@ -1,5 +1,14 @@
 [
   {
+    "title": "PRAISE",
+    "type": "Public-Private Collaboration Project, Plan Estatal (MICINN)",
+    "code": "CPP2024-011447",
+    "role": "Work Package Leader",
+    "description": "Platform for Creating Energy-efficient AI Systems. Involved in developing practices and a framework for certifying energy-efficient AI systems.",
+    "status": "Ongoing",
+    "funder": "Spanish Ministry of Science and Innovation (MICINN)"
+  },
+  {
     "title": "GAISSA-Optimizer",
     "type": "Catalan Project, Technology Transfer",
     "code": "2025 PROD 00236",
@@ -15,7 +24,7 @@
     "role": "Researcher",
     "description": "Spanish national project investigating machine learning evolution, maintenance, and software engineering practices.",
     "status": "Ongoing",
-    "funder": "Spanish Ministry of Science and Innovation"
+    "funder": "Spanish Ministry of Science and Innovation (MICINN)"
   },
   {
     "title": "GAISSA",
