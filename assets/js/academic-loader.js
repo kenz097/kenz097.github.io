@@ -29,7 +29,7 @@
       return;
     }
 
-    fetch(csvFilePath)
+    fetch(csvFilePath + '?t=' + Date.now())
       .then((res) => {
         if (!res.ok) throw new Error('Could not fetch ' + csvFilePath);
         return res.text();
@@ -363,7 +363,7 @@
 
   // --- Students ---
   function loadStudents() {
-    fetch('assets/data/students.json')
+    fetch('assets/data/students.json?t=' + Date.now())
       .then((res) => res.json())
       .then((data) => {
         renderStudents(data);
@@ -422,7 +422,7 @@
 
   // --- Services ---
   function loadServices() {
-    fetch('assets/data/services.json')
+    fetch('assets/data/services.json?t=' + Date.now())
       .then((res) => res.json())
       .then((data) => {
         renderServices(data);
@@ -604,7 +604,7 @@
 
   // --- Research Projects ---
   function loadProjects() {
-    fetch('assets/data/projects.json')
+    fetch('assets/data/projects.json?t=' + Date.now())
       .then((res) => res.json())
       .then((data) => {
         renderProjects(data);
