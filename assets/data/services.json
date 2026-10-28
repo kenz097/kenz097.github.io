@@ -125,7 +125,7 @@
     {
       "journal": "Journal of Systems and Software (JSS)",
       "publisher": "Elsevier",
-      "badge": "5"
+      "badge": "6"
     },
     {
       "journal": "Empirical Software Engineering (EMSE)",
@@ -177,6 +177,15 @@
       "year": 2027,
       "location": "Dublin, Ireland",
       "link": "https://conf.researchr.org/committee/cain-2027/cain-2027-call-for-papers-program-committee"
+    },
+    {
+      "role": "Program Committee",
+      "event": "6th International Conference on AI Engineering – Software Engineering for AI (CAIN 2027) - CAIN Doctoral Symposium",
+      "venue_short": "CAIN 2027",
+      "date": "April 2027",
+      "year": 2027,
+      "location": "Dublin, Ireland",
+      "link": "https://conf.researchr.org/committee/cain-2027/cain-2027-doctoral-symposium-program-committee"
     },
     {
       "role": "Program Committee",
