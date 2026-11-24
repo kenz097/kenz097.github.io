@@ -18,6 +18,19 @@
     initCopyFeedback();
   });
 
+  // Fetch a JSON data file, bypassing the browser cache; resolves to null on any failure
+  function fetchJSON(path) {
+    return fetch(path + '?t=' + Date.now())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
+        return res.json();
+      })
+      .catch((err) => {
+        console.error('Error loading ' + path + ':', err);
+        return null;
+      });
+  }
+
   /* ==========================================================================
      1. PUBLICATIONS (from Article.csv)
      ========================================================================== */
@@ -29,6 +42,9 @@
       return;
     }
 
+    // Citation counts are refreshed nightly by scripts/update_citations.py (GitHub Action)
+    const citationsPromise = fetchJSON('assets/data/citations.json');
+
     fetch(csvFilePath + '?t=' + Date.now())
       .then((res) => {
         if (!res.ok) throw new Error('Could not fetch ' + csvFilePath);
@@ -38,15 +54,18 @@
         Papa.parse(csvText, {
           header: true,
           skipEmptyLines: true,
-          complete: function (results) {
+          complete: async function (results) {
+            const citations = await citationsPromise;
+            const citationMap = (citations && citations.papers) || {};
             allPublications = results.data
               .filter((p) => p['Paper Name'] && p['Paper Name'].trim())
               .map((p, index) => {
+                const type = (p.type || 'other').toLowerCase().trim();
                 return {
                   ...p,
-                  id: 'pub-' + (p.Number || index + 1),
+                  id: `pub-${type}-${(p.Number || '').trim() || 'x' + index}`,
                   Year: (p.Year || '').trim(),
-                  type: (p.type || 'other').toLowerCase().trim(),
+                  type: type,
                   title: (p['Paper Name'] || '').trim(),
                   authors: (p.Authors || '').trim(),
                   venue: (p.Venue || '').trim(),
@@ -54,6 +73,8 @@
                   link: (p.Link || '').trim(),
                   addedDate: (p.AddedDate || '').trim(),
                   number: (p.Number || '').trim(),
+                  citations: (citationMap[normalizeTitle(p['Paper Name'])] || {}).citations || 0,
+                  citationSources: citationMap[normalizeTitle(p['Paper Name'])] || null,
                 };
               });
 
@@ -64,6 +85,7 @@
               return parseEuropeanDate(b.addedDate) - parseEuropeanDate(a.addedDate);
             });
 
+            renderCitationSummary(citations);
             setupPublicationControls();
             renderPublications();
           },
@@ -78,24 +100,36 @@
       });
   }
 
+  // "d/m/yyyy" -> timestamp (0 when missing or malformed, so sorting never sees NaN)
   function parseEuropeanDate(dateStr) {
-    if (!dateStr) return new Date('1970-01-01');
-    const parts = dateStr.split('/');
-    if (parts.length === 3) {
-      return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
-    }
-    return new Date(dateStr);
+    const parts = (dateStr || '').split('/').map((n) => parseInt(n, 10));
+    if (parts.length !== 3 || parts.some(isNaN)) return 0;
+    return new Date(parts[2], parts[1] - 1, parts[0]).getTime();
   }
 
   function setupPublicationControls() {
     // 1. Setup Type Filter Buttons
     const typeButtons = document.querySelectorAll('#publication-filters li');
     typeButtons.forEach((btn) => {
-      btn.addEventListener('click', function () {
-        typeButtons.forEach((b) => b.classList.remove('filter-active'));
-        this.classList.add('filter-active');
-        currentTypeFilter = this.getAttribute('data-filter') || 'all';
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('tabindex', '0');
+      btn.setAttribute('aria-pressed', btn.classList.contains('filter-active'));
+      const activate = () => {
+        typeButtons.forEach((b) => {
+          b.classList.remove('filter-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('filter-active');
+        btn.setAttribute('aria-pressed', 'true');
+        currentTypeFilter = btn.getAttribute('data-filter') || 'all';
         renderPublications();
+      };
+      btn.addEventListener('click', activate);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activate();
+        }
       });
     });
 
@@ -147,6 +181,46 @@
       });
       yearContainer.appendChild(btn);
     });
+  }
+
+  // Must match norm() in scripts/update_citations.py
+  function normalizeTitle(title) {
+    return (title || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
+  // Total citations line under the publication toolbar
+  // Prefers the Google Scholar profile total (like Scholar itself shows), else the per-paper sum.
+  function renderCitationSummary(citations) {
+    const el = document.getElementById('pub-citation-summary');
+    if (!el) return;
+    const scholar = (citations && citations.scholar) || null;
+    const paperSum = allPublications.reduce((sum, p) => sum + p.citations, 0);
+    const total = (scholar && scholar.total_citations) || paperSum;
+    if (!total) {
+      el.hidden = true;
+      return;
+    }
+    const parts = [`<strong>${total.toLocaleString('en-US')}</strong> citations`];
+    if (scholar && scholar.h_index) parts.push(`h-index <strong>${escapeHtml(scholar.h_index)}</strong>`);
+    if (citations.updated) parts.push(`updated ${escapeHtml(citations.updated)}`);
+    const source = scholar && scholar.total_citations
+      ? `<a href="https://scholar.google.com/citations?user=${encodeURIComponent(scholar.user_id)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>`
+      : 'OpenAlex &amp; Semantic Scholar';
+    el.innerHTML = `<i class="bi bi-graph-up-arrow"></i> ${parts.join(' · ')} <span class="pub-citation-source">(${source})</span>`;
+    el.hidden = false;
+  }
+
+  // Tooltip for a paper's citation badge: count per source
+  function citationTooltip(src) {
+    if (!src) return '';
+    const names = [['google_scholar', 'Google Scholar'], ['openalex', 'OpenAlex'], ['semantic_scholar', 'Semantic Scholar']];
+    return names
+      .filter(([k]) => Number.isInteger(src[k]))
+      .map(([k, label]) => `${label} ${src[k]}`)
+      .join(' · ');
   }
 
   function updateCounts() {
@@ -232,7 +306,7 @@
         <div class="pub-card-header">
           <div class="pub-badges">
             <span class="pub-type-badge ${typeBadgeClass}">${typeLabel} ${numberBadge ? `<span class="pub-badge-num">${numberBadge}</span>` : ''}</span>
-            <span class="pub-year-badge"><i class="bi bi-calendar3"></i> ${pub.Year}</span>
+            <span class="pub-year-badge"><i class="bi bi-calendar3"></i> ${escapeHtml(pub.Year)}</span>
           </div>
         </div>
 
@@ -252,7 +326,7 @@
           pub.abstract
             ? `
           <div class="pub-abstract-wrapper">
-            <button class="pub-btn-abstract" type="button" aria-expanded="false" onclick="toggleAbstract('${pub.id}')">
+            <button class="pub-btn-abstract" type="button" aria-expanded="false" aria-controls="${pub.id}-abstract" data-abstract="${pub.id}">
               <i class="bi bi-text-paragraph"></i> <span>Show Abstract</span> <i class="bi bi-chevron-down chevron-icon"></i>
             </button>
             <div id="${pub.id}-abstract" class="pub-abstract-content" style="display: none;">
@@ -267,7 +341,7 @@
           ${
             pub.link
               ? `
-            <a href="${pub.link}" target="_blank" rel="noopener noreferrer" class="btn-pub-action btn-pub-primary">
+            <a href="${escapeHtml(pub.link)}" target="_blank" rel="noopener noreferrer" class="btn-pub-action btn-pub-primary">
               <i class="${pub.link.startsWith('http') ? 'bi bi-box-arrow-up-right' : 'bi bi-file-earmark-pdf'}"></i>
               <span>${pub.link.startsWith('http') ? 'Publisher Link' : 'Download PDF'}</span>
             </a>
@@ -277,6 +351,16 @@
           <button type="button" class="btn-pub-action btn-pub-outline btn-copy-bibtex" data-bibtex="${encodeURIComponent(bibtexCode)}">
             <i class="bi bi-quote"></i> <span>Cite (BibTeX)</span>
           </button>
+          ${
+            pub.citations > 0
+              ? `
+            <a href="https://scholar.google.com/scholar?q=${encodeURIComponent('"' + pub.title + '"')}" target="_blank" rel="noopener noreferrer"
+              class="btn-pub-action btn-pub-outline btn-pub-cited" title="${escapeHtml(citationTooltip(pub.citationSources))}">
+              <i class="bi bi-graph-up-arrow"></i> <span>Cited by <strong>${pub.citations}</strong></span>
+            </a>
+          `
+              : ''
+          }
         </div>
       `;
 
@@ -305,29 +389,32 @@
 
   // Generate clean BibTeX entry
   function generateBibTeX(pub) {
-    const firstAuthor = (pub.authors || '').split(',')[0].trim().split(' ').pop() || 'DeMartino';
-    const firstWord = (pub.title || '').replace(/[^a-zA-Z0-9]/g, '').slice(0, 10) || 'paper';
-    const citeKey = `${firstAuthor.toLowerCase()}${pub.Year || ''}${firstWord.toLowerCase()}`;
+    const ascii = (str) => (str || '').normalize('NFD').replace(/[^a-zA-Z0-9]/g, '');
+    const authorList = (pub.authors || '').split(',').map((a) => a.trim()).filter(Boolean);
+    const firstAuthor = ascii((authorList[0] || '').split(' ').pop()) || 'demartino';
+    const firstWord = ascii((pub.title || '').split(/\s+/)[0]).slice(0, 12) || 'paper';
+    const citeKey = `${firstAuthor}${pub.Year || ''}${firstWord}`.toLowerCase();
+    const url = pub.link ? new URL(pub.link, window.location.href).href : '';
 
-    if (pub.type === 'journal' || pub.type === 'magazine') {
-      return `@article{${citeKey},
-  author    = {${pub.authors}},
-  title     = {${pub.title}},
-  journal   = {${pub.venue}},
-  year      = {${pub.Year}}${pub.link ? `,\n  url       = {${pub.link}}` : ''}
-}`;
-    } else {
-      return `@inproceedings{${citeKey},
-  author    = {${pub.authors}},
-  title     = {${pub.title}},
-  booktitle = {${pub.venue}},
-  year      = {${pub.Year}}${pub.link ? `,\n  url       = {${pub.link}}` : ''}
-}`;
-    }
+    const isArticle = pub.type === 'journal' || pub.type === 'magazine';
+    const fields = [
+      ['author', authorList.join(' and ')],
+      ['title', `{${pub.title}}`], // double braces keep the original capitalisation
+      [isArticle ? 'journal' : 'booktitle', pub.venue],
+      ['year', pub.Year],
+    ];
+    if (url) fields.push(['url', url]);
+    const body = fields.map(([k, v]) => `  ${k.padEnd(9)} = {${v}}`).join(',\n');
+    return `@${isArticle ? 'article' : 'inproceedings'}{${citeKey},\n${body}\n}`;
   }
 
-  // Abstract toggle exposed to global window
-  window.toggleAbstract = function (id) {
+  // Abstract toggle (one delegated listener; survives re-renders)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pub-btn-abstract');
+    if (btn) toggleAbstract(btn.getAttribute('data-abstract'));
+  });
+
+  function toggleAbstract(id) {
     const content = document.getElementById(`${id}-abstract`);
     if (!content) return;
     const btn = content.previousElementSibling;
@@ -350,7 +437,7 @@
         if (chevron) chevron.classList.replace('bi-chevron-up', 'bi-chevron-down');
       }
     }
-  };
+  }
 
   /* ==========================================================================
      2. ACADEMIC DATA (Services, Students, Projects JSON)
@@ -363,12 +450,9 @@
 
   // --- Students ---
   function loadStudents() {
-    fetch('assets/data/students.json?t=' + Date.now())
-      .then((res) => res.json())
-      .then((data) => {
-        renderStudents(data);
-      })
-      .catch((err) => console.error('Error loading students.json:', err));
+    fetchJSON('assets/data/students.json').then((data) => {
+      if (data) renderStudents(data);
+    });
   }
 
   function renderStudents(data) {
@@ -380,7 +464,7 @@
         .map((s) => {
           return `
           <div class="student-card student-current">
-            <div class="student-status-badge ongoing"><span class="pulse-dot"></span> ${s.status || 'Active'}</div>
+            <div class="student-status-badge ongoing"><span class="pulse-dot"></span> ${escapeHtml(s.status || 'Active')}</div>
             <h4 class="student-name">${escapeHtml(s.name)}</h4>
             <div class="student-meta">
               <span class="badge-degree">${escapeHtml(s.level)}</span>
@@ -395,12 +479,12 @@
 
     if (graduatedContainer && data.graduated) {
       // Sort graduated by year descending
-      const sortedGraduated = [...data.graduated].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+      const sortedGraduated = [...data.graduated].sort((a, b) => (parseInt(b.year, 10) || 0) - (parseInt(a.year, 10) || 0));
       graduatedContainer.innerHTML = sortedGraduated
         .map((s) => {
           return `
           <div class="student-card student-graduated">
-            <div class="student-status-badge alumni"><i class="bi bi-mortarboard"></i> ${s.status || 'Alumni'}</div>
+            <div class="student-status-badge alumni"><i class="bi bi-mortarboard"></i> ${escapeHtml(s.status || 'Alumni')}</div>
             <h4 class="student-name">${escapeHtml(s.name)}</h4>
             <div class="student-meta">
               <span class="badge-degree alumni-degree">${escapeHtml(s.level)}</span>
@@ -422,12 +506,9 @@
 
   // --- Services ---
   function loadServices() {
-    fetch('assets/data/services.json?t=' + Date.now())
-      .then((res) => res.json())
-      .then((data) => {
-        renderServices(data);
-      })
-      .catch((err) => console.error('Error loading services.json:', err));
+    fetchJSON('assets/data/services.json').then((data) => {
+      if (data) renderServices(data);
+    });
   }
 
   function renderServices(data) {
@@ -465,7 +546,7 @@
               <span class="service-tag tag-lang"><i class="bi bi-translate"></i> ${escapeHtml(ta.language)}</span>
               ${
                 ta.instructor
-                  ? `<span class="service-tag tag-instructor"><i class="bi bi-person"></i> with <a href="${ta.instructor_link || '#'}" target="_blank">${escapeHtml(ta.instructor)}</a></span>`
+                  ? `<span class="service-tag tag-instructor"><i class="bi bi-person"></i> with <a href="${escapeHtml(ta.instructor_link || '#')}" target="_blank" rel="noopener noreferrer">${escapeHtml(ta.instructor)}</a></span>`
                   : ''
               }
             </div>
@@ -482,7 +563,7 @@
       if (data.editorial_roles && data.editorial_roles.length > 0) {
         editorialContainer.innerHTML = data.editorial_roles
           .map((item) => {
-            const publisherClass = (item.publisher || '').toLowerCase();
+            const publisherClass = (item.publisher || '').toLowerCase().replace(/[^a-z0-9-]/g, '');
             return `
             <div class="editorial-role-card">
               <div class="editorial-card-header">
@@ -511,7 +592,7 @@
                 item.link
                   ? `
                 <div class="editorial-actions">
-                  <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="editorial-link-btn">
+                  <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer" class="editorial-link-btn">
                     <i class="bi bi-box-arrow-up-right"></i> <span>View Journal / Special Issue</span>
                   </a>
                 </div>
@@ -534,7 +615,7 @@
     if (reviewerContainer && data.reviewers) {
       reviewerContainer.innerHTML = data.reviewers
         .map((rev) => {
-          const publisherClass = (rev.publisher || '').toLowerCase();
+          const publisherClass = (rev.publisher || '').toLowerCase().replace(/[^a-z0-9-]/g, '');
           return `
           <div class="journal-reviewer-card">
             <div class="journal-icon"><i class="bi bi-journal-check"></i></div>
@@ -542,20 +623,36 @@
               <h4 class="journal-name">${escapeHtml(rev.journal)}</h4>
               <div class="journal-badges">
                 <span class="badge-publisher pub-${publisherClass}">${escapeHtml(rev.publisher || 'Journal')}</span>
-                ${rev.badge ? `<span class="badge-tier">${escapeHtml(rev.badge)}</span>` : ''}
+                ${rev.badge ? `<span class="badge-tier">${escapeHtml(rev.badge)} ${parseInt(rev.badge, 10) === 1 ? 'review' : 'reviews'}</span>` : ''}
               </div>
             </div>
           </div>
         `;
         })
         .join('');
+
+      const statJournalsEl = document.getElementById('stat-journals-count');
+      if (statJournalsEl) statJournalsEl.textContent = data.reviewers.length;
+
+      // Total reviews: sum of every journal's badge count, so it updates with the data
+      const totalEl = document.getElementById('service-reviewer-total');
+      if (totalEl) {
+        const totalReviews = data.reviewers.reduce((sum, rev) => sum + (parseInt(rev.badge, 10) || 0), 0);
+        const journalCount = data.reviewers.length;
+        totalEl.innerHTML = `<i class="bi bi-check2-circle"></i> <strong>${totalReviews}</strong> reviews across <strong>${journalCount}</strong> international journals`;
+        totalEl.hidden = totalReviews === 0;
+      }
     }
 
     // 4. Organizing Committee & PC Member
     const ocContainer = document.getElementById('service-oc-list');
     if (ocContainer && data.organizing_committee) {
-      // Sort by year descending
-      const sortedOC = [...data.organizing_committee].sort((a, b) => (b.year || 0) - (a.year || 0));
+      // Newest first: by year, then by the month named in "date" (e.g. "June 13 - 17, 2027")
+      const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+      const monthOf = (item) => MONTHS.indexOf(String(item.date || '').trim().slice(0, 3).toLowerCase());
+      const sortedOC = [...data.organizing_committee].sort(
+        (a, b) => (b.year || 0) - (a.year || 0) || monthOf(b) - monthOf(a)
+      );
       ocContainer.innerHTML = sortedOC
         .map((item) => {
           const roleBadgeClass = getRoleBadgeClass(item.role);
@@ -566,7 +663,7 @@
               <span class="committee-year"><i class="bi bi-calendar3"></i> ${escapeHtml(item.date || String(item.year))}</span>
             </div>
             <h4 class="committee-event">
-              ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.event)} <i class="bi bi-box-arrow-up-right"></i></a>` : escapeHtml(item.event)}
+              ${item.link ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.event)} <i class="bi bi-box-arrow-up-right"></i></a>` : escapeHtml(item.event)}
             </h4>
             <div class="committee-location"><i class="bi bi-geo-alt"></i> ${escapeHtml(item.location)}</div>
           </div>
@@ -595,6 +692,7 @@
   function getRoleBadgeClass(role) {
     if (!role) return 'role-default';
     const r = role.toLowerCase();
+    if (r.includes('board') || r.includes('steering')) return 'role-board';
     if (r.includes('chair')) return 'role-chair';
     if (r.includes('junior pc')) return 'role-junior-pc';
     if (r.includes('program committee') || r.includes('pc')) return 'role-pc';
@@ -604,17 +702,15 @@
 
   // --- Research Projects ---
   function loadProjects() {
-    fetch('assets/data/projects.json?t=' + Date.now())
-      .then((res) => res.json())
-      .then((data) => {
-        renderProjects(data);
-      })
-      .catch((err) => console.error('Error loading projects.json:', err));
+    fetchJSON('assets/data/projects.json').then((data) => {
+      if (data) renderProjects(data);
+    });
   }
 
   function renderProjects(projects) {
+    if (!Array.isArray(projects)) return;
     const projCountEl = document.getElementById('stat-projects-count');
-    if (projCountEl && projects) projCountEl.textContent = projects.length;
+    if (projCountEl) projCountEl.textContent = projects.length;
 
     const container = document.getElementById('research-projects-list');
     if (!container) return;
@@ -673,17 +769,19 @@
       const rawBibtex = decodeURIComponent(btn.getAttribute('data-bibtex') || '');
       if (!rawBibtex) return;
 
-      navigator.clipboard
-        .writeText(rawBibtex)
+      // Clipboard API is missing on non-HTTPS pages (e.g. file://)
+      const copy = navigator.clipboard ? navigator.clipboard.writeText(rawBibtex) : Promise.reject();
+      copy
         .then(() => {
-          const originalHTML = btn.innerHTML;
+          if (!btn.dataset.originalHtml) btn.dataset.originalHtml = btn.innerHTML;
           btn.innerHTML = '<i class="bi bi-check2"></i> <span>Copied!</span>';
           btn.classList.add('copied');
 
           showToast('BibTeX citation copied to clipboard!');
 
-          setTimeout(() => {
-            btn.innerHTML = originalHTML;
+          clearTimeout(btn._copyTimer);
+          btn._copyTimer = setTimeout(() => {
+            btn.innerHTML = btn.dataset.originalHtml;
             btn.classList.remove('copied');
           }, 2000);
         })
@@ -702,16 +800,18 @@
       document.body.appendChild(toast);
     }
     toast.textContent = msg;
+    toast.setAttribute('role', 'status');
     toast.classList.add('show');
-    setTimeout(() => {
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
       toast.classList.remove('show');
     }, 2500);
   }
 
   // Utility escape HTML
-  function escapeHtml(str) {
-    if (!str) return '';
-    return str
+  function escapeHtml(value) {
+    if (value === null || value === undefined) return '';
+    return String(value)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')

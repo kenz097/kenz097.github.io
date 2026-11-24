@@ -120,17 +120,22 @@
     {
       "journal": "Transactions on Software Engineering and Methodology (TOSEM)",
       "publisher": "ACM",
-      "badge": "4"
+      "badge": "8"
+    },
+    {
+      "journal": "Transactions on Software Engineering (TSE)",
+      "publisher": "IEEE",
+      "badge": "1"
     },
     {
       "journal": "Journal of Systems and Software (JSS)",
       "publisher": "Elsevier",
-      "badge": "6"
+      "badge": "7"
     },
     {
       "journal": "Empirical Software Engineering (EMSE)",
       "publisher": "Springer",
-      "badge": "3"
+      "badge": "2"
     },
     {
       "journal": "Journal of Software: Evolution and Process (JSEP)",
@@ -155,10 +160,10 @@
     {
       "journal": "Software Quality Journal",
       "publisher": "Springer",
-      "badge": "3"
+      "badge": "1"
     },
     {
-      "journal": "Requirement Engineering",
+      "journal": "Requirements Engineering",
       "publisher": "Springer",
       "badge": "1"
     },
@@ -169,6 +174,15 @@
     }
   ],
   "organizing_committee": [
+    {
+      "role": "Scientific Board Member",
+      "event": "2nd International Conference on Software Lifecycle using Digital and Artificial Intelligence Paradigms (FSOFT 2027)",
+      "venue_short": "FSOFT 2027",
+      "date": "June 13 - 17, 2027",
+      "year": 2027,
+      "location": "Nice / Saint-Laurent-du-Var, France",
+      "link": "https://www.dtrsociety.org/fsoft2027/"
+    },
     {
       "role": "Program Committee",
       "event": "6th International Conference on AI Engineering – Software Engineering for AI (CAIN 2027) - Research Track",
@@ -325,7 +339,7 @@
   ],
   "volunteers": [
     {
-      "event": "31st International Working Conference on Requirement Engineering: Foundation for Software Quality (REFSQ)",
+      "event": "31st International Working Conference on Requirements Engineering: Foundation for Software Quality (REFSQ)",
       "year": 2025,
       "location": "Barcelona, Spain"
     },

@@ -1,0 +1,273 @@
+{
+  "updated": "2026-11-24",
+  "total": 163,
+  "papers": {
+    "accelerating 3d scene development for the metaverse lessons from photogrammetry and manual modeling": {
+      "title": "Accelerating 3D Scene Development for the Metaverse: Lessons from Photogrammetry and Manual Modeling",
+      "citations": 7,
+      "google_scholar": 7,
+      "openalex": 7,
+      "semantic_scholar": 5,
+      "doi": "https://doi.org/10.1109/imeta62882.2024.10808008"
+    },
+    "classification and challenges of non functional requirements in ml enabled systems a systematic literature review": {
+      "title": "Classification and Challenges of Non-Functional Requirements in ML-Enabled Systems: A Systematic Literature Review",
+      "citations": 41,
+      "google_scholar": 41,
+      "openalex": 32,
+      "semantic_scholar": 19,
+      "doi": "https://doi.org/10.1016/j.infsof.2025.107678"
+    },
+    "do developers adopt green architectural tactics for ml enabled systems a mining software repository study": {
+      "title": "Do Developers Adopt Green Architectural Tactics for ML-Enabled Systems? A Mining Software Repository Study",
+      "citations": 18,
+      "google_scholar": 18,
+      "openalex": 13,
+      "semantic_scholar": 14,
+      "doi": "https://doi.org/10.1109/icse-seis66351.2025.00019"
+    },
+    "a framework for using llms for repository mining studies in empirical software engineering": {
+      "title": "A Framework for Using LLMs for Repository Mining Studies in Empirical Software Engineering",
+      "citations": 26,
+      "google_scholar": 26,
+      "openalex": 21,
+      "semantic_scholar": 16,
+      "doi": "https://doi.org/10.1109/wsese66602.2025.00008"
+    },
+    "a first look at the lifecycle of dl specific self admitted technical debt": {
+      "title": "A First Look at the Lifecycle of DL-Specific Self-Admitted Technical Debt",
+      "citations": 1,
+      "google_scholar": 1,
+      "openalex": 1,
+      "semantic_scholar": 1,
+      "doi": "https://doi.org/10.1109/saner-c66551.2025.00030"
+    },
+    "examining the impact of bias mitigation algorithms on the sustainability of ml enabled systems a benchmark study": {
+      "title": "Examining the Impact of Bias Mitigation Algorithms on the Sustainability of ML-enabled Systems: A Benchmark Study",
+      "citations": 17,
+      "google_scholar": 17,
+      "openalex": 10,
+      "semantic_scholar": 9,
+      "doi": "https://doi.org/10.1016/j.jss.2025.112458"
+    },
+    "using large language models to support software engineering documentation in waterfall life cycles are we there yet": {
+      "title": "Using Large Language Models to Support Software Engineering Documentation in Waterfall Life Cycles: Are We There Yet?",
+      "citations": 13,
+      "google_scholar": 13,
+      "openalex": null,
+      "semantic_scholar": 7,
+      "doi": null
+    },
+    "qualai continuous quality improvement of ai based systems": {
+      "title": "QualAI: Continuous Quality Improvement of AI-based Systems",
+      "citations": 1,
+      "google_scholar": 1,
+      "openalex": 0,
+      "semantic_scholar": 1,
+      "doi": null
+    },
+    "continuous quality improvement of ai based systems the qualai project": {
+      "title": "Continuous Quality Improvement of AI-based Systems: the QualAI Project",
+      "citations": 4,
+      "google_scholar": 4,
+      "openalex": 4,
+      "semantic_scholar": 2,
+      "doi": "https://doi.org/10.1145/3674805.3695393"
+    },
+    "into the ml universe an improved classification and characterization of machine learning projects": {
+      "title": "Into the ML-Universe: An Improved Classification and Characterization of Machine-Learning Projects",
+      "citations": 9,
+      "google_scholar": 9,
+      "openalex": 7,
+      "semantic_scholar": 7,
+      "doi": "https://doi.org/10.1016/j.jss.2025.112471"
+    },
+    "teaching software engineering for artificial intelligence an experience report": {
+      "title": "Teaching Software Engineering for Artificial Intelligence: An Experience Report",
+      "citations": 2,
+      "google_scholar": 2,
+      "openalex": 1,
+      "semantic_scholar": 2,
+      "doi": "https://doi.org/10.1007/978-3-032-04207-1_15"
+    },
+    "sustainability of machine learning enabled systems the machine learning practitioner s perspective": {
+      "title": "Sustainability of Machine Learning-Enabled Systems: The Machine Learning Practitioner’s Perspective",
+      "citations": 9,
+      "google_scholar": 9,
+      "openalex": 6,
+      "semantic_scholar": 5,
+      "doi": "https://doi.org/10.1145/3777553"
+    },
+    "green architectural tactics in ml enabled systems an llm based repository mining study": {
+      "title": "Green Architectural Tactics in ML-enabled Systems: An LLM-based Repository Mining Study",
+      "citations": 0,
+      "google_scholar": 0,
+      "openalex": 0,
+      "semantic_scholar": 0,
+      "doi": "https://doi.org/10.1007/s10664-026-10865-9"
+    },
+    "does model size matter a comparison of small and large language models for requirements classification": {
+      "title": "Does Model Size Matter? A Comparison of Small and Large Language Models for Requirements Classification",
+      "citations": 14,
+      "google_scholar": 14,
+      "openalex": 11,
+      "semantic_scholar": 10,
+      "doi": "https://doi.org/10.48550/arxiv.2510.21443"
+    },
+    "towards ai powered automatic 3d scene generation for the metaverse a comparative analysis of manual and photogrammetry techniques": {
+      "title": "Towards AI-Powered Automatic 3D Scene Generation for the Metaverse: A Comparative Analysis of Manual and Photogrammetry Techniques",
+      "citations": 0,
+      "google_scholar": 0,
+      "openalex": 0,
+      "semantic_scholar": 0,
+      "doi": "https://doi.org/10.1007/s10586-026-06530-x"
+    },
+    "from prompting to engineering a research agenda for prompt engineering in software engineering": {
+      "title": "From Prompting to Engineering: A Research Agenda for Prompt Engineering in Software Engineering",
+      "citations": 1,
+      "google_scholar": 1,
+      "openalex": 1,
+      "semantic_scholar": 1,
+      "doi": "https://doi.org/10.1145/3844691.3844706"
+    }
+  },
+  "scholar": {
+    "user_id": "XNgzY0IAAAAJ",
+    "total_citations": 180,
+    "h_index": 8,
+    "i10_index": 6,
+    "fetched_at": "2026-11-24",
+    "papers": [
+      {
+        "title": "Classification and challenges of non-functional requirements in ML-enabled systems: A systematic literature review",
+        "citations": 41,
+        "year": "2025"
+      },
+      {
+        "title": "A Framework for Using LLMs for Repository Mining Studies in Empirical Software Engineering",
+        "citations": 26,
+        "year": "2024"
+      },
+      {
+        "title": "Do developers adopt green architectural tactics for ML-enabled systems? A mining software repository study",
+        "citations": 18,
+        "year": "2025"
+      },
+      {
+        "title": "Examining the impact of bias mitigation algorithms on the sustainability of ml-enabled systems: A benchmark study",
+        "citations": 17,
+        "year": "2025"
+      },
+      {
+        "title": "Does Model Size Matter? A Comparison of Small and Large Language Models for Requirements Classification",
+        "citations": 14,
+        "year": "2025"
+      },
+      {
+        "title": "Using large language models to support software engineering documentation in waterfall life cycles: Are we there yet?",
+        "citations": 13,
+        "year": "2024"
+      },
+      {
+        "title": "Sustainability of Machine Learning-Enabled Systems: The Machine Learning Practitioner’s Perspective",
+        "citations": 9,
+        "year": "2025"
+      },
+      {
+        "title": "Into the ml-universe: An improved classification and characterization of machine-learning projects",
+        "citations": 9,
+        "year": "2025"
+      },
+      {
+        "title": "A Methodological Framework for LLM-Based Mining of Software Repositories",
+        "citations": 7,
+        "year": "2025"
+      },
+      {
+        "title": "Accelerating 3d scene development for the metaverse: Lessons from photogrammetry and manual modeling",
+        "citations": 7,
+        "year": "2024"
+      },
+      {
+        "title": "Green prompt engineering: Investigating the energy impact of prompt design in software engineering",
+        "citations": 5,
+        "year": "2025"
+      },
+      {
+        "title": "Does Model Size Matter",
+        "citations": 5,
+        "year": "2025"
+      },
+      {
+        "title": "Continuous quality improvement of AI-based systems: the QualAI project",
+        "citations": 4,
+        "year": "2024"
+      },
+      {
+        "title": "Teaching Software Engineering for Artificial Intelligence: An Experience Report",
+        "citations": 2,
+        "year": "2025"
+      },
+      {
+        "title": "From Prompting to Engineering: A Research Agenda for Prompt Engineering in Software Engineering",
+        "citations": 1,
+        "year": "2026"
+      },
+      {
+        "title": "A First Look at the Lifecycle of DL-Specific Self-Admitted Technical Debt",
+        "citations": 1,
+        "year": "2025"
+      },
+      {
+        "title": "QualAI: Continuous Quality Improvement of AI-based Systems.",
+        "citations": 1,
+        "year": "2024"
+      },
+      {
+        "title": "Green architectural tactics in ML-enabled systems: an LLM-based repository mining study",
+        "citations": 0,
+        "year": "2027"
+      },
+      {
+        "title": "OpenDraco: A Platform for Engineering and Experimenting with Configurable Multi-Agent Architectures for Software Engineering",
+        "citations": 0,
+        "year": "2026"
+      },
+      {
+        "title": "Towards AI-powered automatic 3D scene generation for the metaverse: a comparative analysis of manual and photogrammetry techniques",
+        "citations": 0,
+        "year": "2026"
+      },
+      {
+        "title": "Software Sustainability in the ML Era: Empirical Insights, Trade-offs, and LLM Methodologies",
+        "citations": 0,
+        "year": "2025"
+      },
+      {
+        "title": "Workshop Program Committee",
+        "citations": 0,
+        "year": ""
+      },
+      {
+        "title": "2025 IEEE International Conference on Software Analysis, Evolution and Reengineering-Companion (SANER-C)| 979-8-3315-3749-4/25/$31.00© 2025 IEEE| DOI: 10.1109/SANER-C66551 …",
+        "citations": 0,
+        "year": ""
+      },
+      {
+        "title": "Bandeira, Michelle 48 Castaño, Joel 6 Costalonga, Marcelo 56 Coutinho, Daniel 20",
+        "citations": 0,
+        "year": ""
+      },
+      {
+        "title": "WSESE 2025",
+        "citations": 0,
+        "year": ""
+      },
+      {
+        "title": "2025 IEEE/ACM 47th International Conference on Software Engineering: Software Engineering in Society (ICSE-SEIS)| 979-8-3315-3707-4/25/$31.00© 2025 IEEE| DOI: 10.1109/ICSE …",
+        "citations": 0,
+        "year": ""
+      }
+    ]
+  }
+}

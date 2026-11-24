@@ -318,13 +318,14 @@ code, pre, .project-code-chip {
 @media (max-width: 1199px) {
   #hero {
     margin-left: 0 !important; /* Sidebar collapses off-screen on mobile */
+    padding-top: 76px !important; /* clear the fixed mobile menu button */
   }
 }
 
 @media (max-width: 768px) {
   #hero {
     min-height: 380px !important;
-    padding: 50px 15px !important;
+    padding: 76px 15px 50px !important;
   }
   #hero h1 {
     font-size: 28px !important;
@@ -552,6 +553,31 @@ code, pre, .project-code-chip {
   gap: 4px;
 }
 
+.pub-citation-summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 14px 0;
+}
+
+.pub-citation-summary strong {
+  color: var(--text-main);
+}
+
+.pub-citation-summary i {
+  color: var(--primary-accent);
+  margin-right: 4px;
+}
+
+.pub-citation-source {
+  font-size: 12.5px;
+}
+
+.pub-citation-source a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .pub-title {
   font-size: 18.5px;
   font-weight: 700;
@@ -671,6 +697,14 @@ code, pre, .project-code-chip {
   background: var(--surface-bg-subtle);
   color: var(--primary-accent);
   border-color: var(--primary-border);
+}
+
+.btn-pub-cited strong {
+  color: var(--text-main);
+}
+
+.btn-pub-cited:hover strong {
+  color: inherit;
 }
 
 .btn-copy-bibtex.copied {
@@ -1011,6 +1045,22 @@ code, pre, .project-code-chip {
 }
 
 /* Journal Reviewer Cards */
+.reviewer-total {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted, #64748b);
+  margin: 0 0 12px 0;
+}
+
+.reviewer-total strong {
+  color: var(--text-main);
+}
+
+.reviewer-total i {
+  color: var(--primary-accent);
+  margin-right: 4px;
+}
+
 .reviewers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1124,6 +1174,7 @@ code, pre, .project-code-chip {
 .role-pc { background: #ede9fe; color: #6d28d9; }
 .role-local { background: #dcfce7; color: #166534; }
 .role-reviewer { background: #f1f5f9; color: #475569; }
+.role-board { background: #ccfbf1; color: #0f766e; border: 1px solid #99f6e4; }
 
 .committee-year {
   font-size: 12.5px;
@@ -1966,7 +2017,11 @@ code, pre, .project-code-chip {
 
   #publication-filters {
     width: 100%;
-    justify-content: space-around;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px;
+    border-radius: var(--radius-md) !important;
   }
 
   #publication-filters li {
@@ -2007,6 +2062,12 @@ code, pre, .project-code-chip {
   .about-languages-pill {
     font-size: 12.5px;
     padding: 8px 12px;
+  }
+
+  .volunteer-pill {
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+    row-gap: 2px;
   }
 }
 

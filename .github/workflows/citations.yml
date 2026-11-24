@@ -1,0 +1,40 @@
+name: Update citation counts
+
+on:
+  schedule:
+    - cron: "17 3 * * *"   # every night at 03:17 UTC
+  workflow_dispatch:        # manual "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: citations
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch citation counts
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}   # Google Scholar via SerpApi (optional)
+        run: python3 scripts/update_citations.py
+      - name: Commit if counts changed
+        run: |
+          # Ignore the dates so the repo only gets a commit when a count actually changes
+          if git diff --unified=0 -- assets/data/citations.json | grep -E '^[+-] ' | grep -qvE '"(updated|fetched_at)"'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+            git add assets/data/citations.json
+            git commit -m "Update citation counts"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          else
+            echo "No citation changes."
+          fi
