@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "total": 163,
   "papers": {
     "accelerating 3d scene development for the metaverse lessons from photogrammetry and manual modeling": {
@@ -54,7 +54,7 @@
       "title": "Using Large Language Models to Support Software Engineering Documentation in Waterfall Life Cycles: Are We There Yet?",
       "citations": 13,
       "google_scholar": 13,
-      "openalex": null,
+      "openalex": 0,
       "semantic_scholar": 7,
       "doi": null
     },
@@ -78,7 +78,7 @@
       "title": "Into the ML-Universe: An Improved Classification and Characterization of Machine-Learning Projects",
       "citations": 9,
       "google_scholar": 9,
-      "openalex": 7,
+      "openalex": 6,
       "semantic_scholar": 7,
       "doi": "https://doi.org/10.1016/j.jss.2025.112471"
     },
