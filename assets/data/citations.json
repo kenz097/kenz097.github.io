@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "total": 163,
   "papers": {
     "accelerating 3d scene development for the metaverse lessons from photogrammetry and manual modeling": {
@@ -86,7 +86,7 @@
       "title": "Teaching Software Engineering for Artificial Intelligence: An Experience Report",
       "citations": 2,
       "google_scholar": 2,
-      "openalex": 1,
+      "openalex": 2,
       "semantic_scholar": 2,
       "doi": "https://doi.org/10.1007/978-3-032-04207-1_15"
     },
