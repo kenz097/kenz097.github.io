@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "total": 163,
   "papers": {
     "accelerating 3d scene development for the metaverse lessons from photogrammetry and manual modeling": {
@@ -94,7 +94,7 @@
       "title": "Sustainability of Machine Learning-Enabled Systems: The Machine Learning Practitioner’s Perspective",
       "citations": 9,
       "google_scholar": 9,
-      "openalex": 6,
+      "openalex": 7,
       "semantic_scholar": 5,
       "doi": "https://doi.org/10.1145/3777553"
     },
