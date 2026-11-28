@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "total": 163,
   "papers": {
     "accelerating 3d scene development for the metaverse lessons from photogrammetry and manual modeling": {
@@ -31,7 +31,7 @@
       "citations": 26,
       "google_scholar": 26,
       "openalex": 21,
-      "semantic_scholar": 16,
+      "semantic_scholar": 17,
       "doi": "https://doi.org/10.1109/wsese66602.2025.00008"
     },
     "a first look at the lifecycle of dl specific self admitted technical debt": {
